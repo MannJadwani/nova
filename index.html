@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova AI Agent - The Future of Automation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 0 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            font-weight: 300;
+            margin-bottom: 32px;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+            line-height: 0.9;
+        }
+
+        .hero .tagline {
+            font-size: 20px;
+            margin-bottom: 48px;
+            color: #888888;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .coming-soon-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 48px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .waitlist-container {
+            margin-top: 48px;
+        }
+
+        .waitlist-form {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            justify-content: center;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .waitlist-form input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 16px;
+            padding: 16px 20px;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.2s ease;
+            flex: 1;
+        }
+
+        .waitlist-form input:focus {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .waitlist-form input::placeholder {
+            color: #666666;
+        }
+
+        .waitlist-form button {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .waitlist-form button:hover {
+            background: #f0f0f0;
+            transform: translateY(-1px);
+        }
+
+        .features {
+            padding: 120px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 300;
+            margin-bottom: 80px;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 48px;
+        }
+
+        .feature-card {
+            text-align: left;
+            padding: 32px 0;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+        }
+
+        .feature-card p {
+            color: #888888;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .roadmap {
+            padding: 120px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .timeline {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 48px;
+            position: relative;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 48px;
+            width: 1px;
+            height: calc(100% + 24px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-number {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 500;
+            color: #ffffff;
+            margin-right: 32px;
+            flex-shrink: 0;
+        }
+
+        .timeline-content h3 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+        }
+
+        .timeline-content p {
+            color: #888888;
+            font-size: 16px;
+        }
+
+        footer {
+            padding: 80px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-content {
+            color: #666666;
+            font-size: 14px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 32px;
+        }
+
+        .social-links a {
+            color: #888888;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+
+        .social-links a:hover {
+            color: #ffffff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .waitlist-form {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .waitlist-form input {
+                width: 100%;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            
+            .timeline-item {
+                margin-bottom: 32px;
+            }
+            
+            .timeline-number {
+                margin-right: 24px;
+            }
+        }
+
+        /* Subtle animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-card {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .timeline-item {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        /* Stagger animations */
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+        .feature-card:nth-child(5) { animation-delay: 0.5s; }
+        .feature-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Nova AI</div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="coming-soon-badge">Coming Soon</div>
+                    <h1>Nova AI Agent</h1>
+                    <p class="tagline">The next generation of AI automation. Desktop-first, privacy-focused, and infinitely capable.</p>
+                    
+                    <div class="waitlist-container">
+                        <form class="waitlist-form" onsubmit="joinWaitlist(event)">
+                            <input type="email" placeholder="Enter your email" required>
+                            <button type="submit">Join Waitlist</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">Built for the Future</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Multi-Step Reasoning</h3>
+                        <p>Advanced AI that remembers context, plans complex workflows, and executes multi-step tasks with precision.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Desktop Integration</h3>
+                        <p>Native desktop app with full terminal and browser automation. Control your entire workflow from one interface.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Extensible Plugins</h3>
+                        <p>Powerful plugin system supporting MCP protocol, custom tools, and seamless integration with your favorite apps.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Privacy First</h3>
+                        <p>Your data stays local. Choose between cloud AI or run everything on your machine with offline mode.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Specialized Agents</h3>
+                        <p>Domain-specific AI agents for development, research, automation, and creative tasks.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>No-Code Workflows</h3>
+                        <p>Build complex automations without coding, or dive deep with custom scripts and advanced configurations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="roadmap">
+            <div class="container">
+                <h2 class="section-title">Development Timeline</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-number">1</div>
+                        <div class="timeline-content">
+                            <h3>Foundation</h3>
+                            <p>Tech stack finalization, architecture design, and core planning</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">2</div>
+                        <div class="timeline-content">
+                            <h3>MVP Development</h3>
+                            <p>Basic AI chat, task execution, and essential tool integrations</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">3</div>
+                        <div class="timeline-content">
+                            <h3>Agent Core</h3>
+                            <p>Multi-step reasoning, plugin system, and specialized agents</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">4</div>
+                        <div class="timeline-content">
+                            <h3>Desktop Power</h3>
+                            <p>Native desktop app with terminal and browser automation</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-number">5</div>
+                        <div class="timeline-content">
+                            <h3>Launch</h3>
+                            <p>Beta testing, community building, and public release</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Nova AI Agent. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#">GitHub</a>
+                    <a href="#">Discord</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function joinWaitlist(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input').value;
+            
+            const button = event.target.querySelector('button');
+            const originalText = button.textContent;
+            button.textContent = 'Joining...';
+            button.disabled = true;
+            
+            setTimeout(() => {
+                button.textContent = 'Joined';
+                button.style.background = '#888888';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.disabled = false;
+                    button.style.background = '#ffffff';
+                    event.target.reset();
+                }, 2000);
+            }, 1000);
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.feature-card, .timeline-item');
+            animatedElements.forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
